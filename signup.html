@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Đăng Ký</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/signup.css">
+</head>
+<body>
+    <div class="back-home">
+        <a href="index.html">
+            <span>←</span>
+            <span>Về trang chủ</span>
+        </a>
+    </div>
+
+    <div class="register-container">
+        <div class="logo-section">
+            <img src="../img/logo.png" alt="DIEU TECH" class="logo-img">
+            <div class="logo-subtitle">DIEU TECH</div>
+        </div>
+
+        <div class="register-header">
+            <h2>Đăng Ký</h2>
+            <p>Đăng ký để trải nghiệm mua sắm công nghệ tốt nhất!</p>
+        </div>
+
+        <form class="register-form" id="registerForm">
+
+            <div class="form-group">
+                <label for="fullname">Họ và tên</label>
+                <div class="input-group">
+                    <span class="input-group-text">👤</span>
+                    <input type="text" class="form-input" placeholder="Nguyễn Văn A" required id="fullname" name="fullname">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <div class="input-wrapper has-toggle">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Mật khẩu (tối thiểu 8 ký tự)" required>
+                    <button type="button" class="toggle-password" data-target="password" aria-label="Hiện mật khẩu">👁</button>
+                </div>
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="strengthBar"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Xác nhận mật khẩu</label>
+                <div class="input-wrapper has-toggle">
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Nhập lại mật khẩu" required>
+                    <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Hiện mật khẩu">👁</button>
+                </div>
+            </div>
+            <div class="terms-wrapper">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của DIEU Tech
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="register-button" id="registerBtn">Tạo tài khoản</button>
+        </form>
+
+        <div class="login-link">
+            Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a>
+        </div>
+    </div>
+    <script src="../javascript/register.js"></script>
+</body>
+</html>

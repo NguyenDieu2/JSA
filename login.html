@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Đăng Nhập</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/login.css">
+</head>
+<body>
+    <div class="back-home">
+        <a href="index.html">
+            <span>←</span>
+            <span>Về trang chủ</span>
+        </a>
+    </div>
+
+    <div class="login-container">
+        <div class="logo-section">
+            <img src="../img/logo.png" alt="DIEU TECH" class="logo-img">
+            <div class="logo-subtitle">DIEU TECH</div>
+        </div>
+
+        <div class="login-header">
+            <h2>ĐĂNG NHẬP</h2>
+            <p>CHÀO MỪNG TRỞ LẠI!</p>
+        </div>
+
+        <form class="login-form" action="#" method="POST">
+            <div class="form-group">
+                <!-- FIX: dùng <label for="email"> thay vì <p> -->
+                <label for="email">Email</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" name="email" class="form-input" placeholder="...@gmail.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <!-- FIX: thêm class has-toggle để padding-right cho input -->
+                <div class="input-wrapper has-toggle">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Nhập mật khẩu của bạn" required>
+                    <button type="button" id="showPassword" aria-label="Hiện mật khẩu">👁</button>
+                </div>
+            </div>
+
+            <div class="form-options">
+                <div class="checkbox-row">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Ghi nhớ tôi</label>
+                </div>
+                <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="login-button">ĐĂNG NHẬP</button>
+        </form>
+
+        <div class="divider">
+            <span>— HOẶC —</span>
+        </div>
+
+        <div class="social-login">
+            <a href="#" class="social-button">
+                <span class="social-icon"><img src="../img/gmailicon.png" alt="Google"></span>
+                <span>Google</span>
+            </a>
+            <a href="#" class="social-button">
+                <span class="social-icon"><img src="../img/facebookicon.png" alt="Facebook"></span>
+                <span>Facebook</span>
+            </a>
+        </div>
+
+        <div class="signup-link">
+            <span>Chưa có tài khoản?</span>
+            <a href="signup.html">Đăng ký ngay</a>
+        </div>
+    </div>
+
+    <script src="../javascript/login.js"> </script>
+</body>
+</html>

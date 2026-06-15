@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Giỏ Hàng - DIEU TECH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/cart.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <img src="../img/logo.png" alt="DIEU TECH" class="logo">
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html#products">Sản phẩm</a></li>
+                <li><a href="login.html">Đăng nhập</a></li>
+                <li><a href="signup.html">Đăng ký</a></li>
+                <li>
+                    <a href="cart.html" class="cart-wrap">
+                        <img class="cart" src="../img/cart.png" alt="Giỏ hàng">
+                        <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+                    </a>
+                </li>
+            </ul>
+            <form class="search-form" onsubmit="return false;">
+                <input class="search-input" type="text" placeholder="Tìm kiếm sản phẩm...">
+                <button class="btn-search" type="button">Tìm kiếm</button>
+            </form>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <h1 class="page-title">Giỏ <span class="accent">Hàng</span></h1>
+            <p class="breadcrumb"><a href="index.html">Trang chủ</a> <span>/</span> Giỏ hàng</p>
+        </div>
+        <div class="hero-glow"></div>
+    </section>
+
+    <main class="cart-container">
+        <section class="cart-section">
+            <div class="cart-header-row" id="cartHeaderRow">
+                <span class="col-product">Sản phẩm</span>
+                <span class="col-price">Đơn giá</span>
+                <span class="col-qty">Số lượng</span>
+                <span class="col-total">Thành tiền</span>
+                <span class="col-action"></span>
+            </div>
+
+            <div class="cart-items" id="cartItems"></div>
+            <div class="empty-cart" id="emptyCart" style="display:none;">
+                <div class="empty-icon">🛒</div>
+                <h3>Giỏ hàng trống</h3>
+                <p>Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                <a href="index.html" class="button">Khám phá sản phẩm</a>
+            </div>
+
+            <div class="cart-actions" id="cartActions" style="display:none;">
+                <a href="index.html" class="btn-continue">← Tiếp tục mua sắm</a>
+                <button class="btn-clear" onclick="clearCart()">Xóa tất cả</button>
+            </div>
+        </section>
+
+        <aside class="order-summary" id="orderSummary" style="display:none;">
+            <h2 class="summary-title">Tóm Tắt Đơn Hàng</h2>
+
+            <div class="summary-row">
+                <span>Tạm tính</span>
+                <span id="subtotal">0đ</span>
+            </div>
+            <div class="summary-row">
+                <span>Phí vận chuyển</span>
+                <span class="free-ship">Miễn phí</span>
+            </div>
+            <div class="summary-row discount-row" id="discountRow" style="display:none;">
+                <span>Giảm giá</span>
+                <span id="discountAmount" class="discount-val">−0đ</span>
+            </div>
+
+            <div class="coupon-wrap">
+                <input class="coupon-input" type="text" id="couponInput" placeholder="Nhập mã giảm giá...">
+                <button class="btn-coupon" onclick="applyCoupon()">Áp dụng</button>
+            </div>
+            <p class="coupon-hint" id="couponMsg"></p>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-total">
+                <span>Tổng cộng</span>
+                <span id="grandTotal" class="total-price">0đ</span>
+            </div>
+
+            <button class="btn-checkout" onclick="checkout()">
+                Tiến hành thanh toán
+                <span class="btn-arrow">→</span>
+            </button>
+        </aside>
+    </main>
+
+    <section class="suggested" id="suggestedSection">
+        <h2 class="section-title">Có Thể Bạn Quan Tâm</h2>
+        <div class="suggested-grid">
+            <div class="sug-card">
+                <img src="../img/watch.png" alt="Apple Watch Ultra 3">
+                <h4>Apple Watch Ultra 3</h4>
+                <span class="sug-price">22.990.000đ</span>
+                <a href="watchcon.html"><button class="sug-btn">Xem chi tiết</button></a>
+            </div>
+            <div class="sug-card">
+                <img src="../img/imac.png" alt="iMac M4">
+                <h4>iMac M4</h4>
+                <span class="sug-price">48.990.000đ</span>
+                <a href="imaccon.html"><button class="sug-btn">Xem chi tiết</button></a>
+            </div>
+            <div class="sug-card">
+                <img src="../img/canon.png" alt="Canon EOS R50">
+                <h4>Canon EOS R50</h4>
+                <span class="sug-price">19.490.000đ</span>
+                <a href="canoncon.html"><button class="sug-btn">Xem chi tiết</button></a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Hỗ Trợ Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Bảo hành & sửa chữa</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Liên hệ</h4>
+                <ul>
+                    <li><a href="#">Hotline: 081224432</a></li>
+                    <li><a href="#">Email: contact@dieutech.com</a></li>
+                    <li><a href="#">Hỗ trợ: 8:00 - 17:00</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>DIEU TECHNOLOGY</p>
+        </div>
+    </footer>
+    <script src="../javascript/cart.js"></script>
+</body>
+</html>
