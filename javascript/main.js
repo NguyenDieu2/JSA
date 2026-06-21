@@ -1,13 +1,6 @@
-const logoutBtn = document.getElementById("logout");
-if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("currentUser");
-        location.href = "login.html";
-    });
-}
 document.addEventListener('DOMContentLoaded', function () {
-
     var CART_KEY = 'dieutech_cart';
+    var ADMIN_PRODUCTS_KEY = 'dieutech_admin_products';
 
     function getCart() {
         try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
@@ -16,6 +9,46 @@ document.addEventListener('DOMContentLoaded', function () {
     function saveCart(cart) {
         localStorage.setItem(CART_KEY, JSON.stringify(cart));
     }
+
+    // Render các sản phẩm do admin thêm (lưu trong localStorage) thành
+    // .product-card giống hệt cấu trúc sản phẩm có sẵn, chèn vào cuối lưới.
+    function renderAdminProducts() {
+        var grid = document.querySelector('.product-grid');
+        if (!grid) return;
+
+        var adminProducts = [];
+        try { adminProducts = JSON.parse(localStorage.getItem(ADMIN_PRODUCTS_KEY)) || []; }
+        catch (e) { adminProducts = []; }
+
+        adminProducts.forEach(function (p) {
+            var specsList = Array.isArray(p.descLines) && p.descLines.length
+                ? p.descLines
+                : String(p.specs || '').split('|').map(function (s) { return s.trim(); }).filter(Boolean);
+
+            var li = specsList.map(function (line) {
+                return '<li>' + line + '</li>';
+            }).join('');
+
+            var card = document.createElement('div');
+            card.className = 'product-card';
+            card.setAttribute('data-id', p.id);
+            card.setAttribute('data-name', p.name);
+            card.setAttribute('data-price', p.price);
+            card.setAttribute('data-img', p.img);
+            card.setAttribute('data-specs', specsList.join(' | '));
+
+            card.innerHTML =
+                '<span class="product-icon"><img src="' + p.img + '" alt="' + p.name + '"></span>' +
+                '<h3>' + p.name + '</h3>' +
+                '<div class="product-specs"><ul>' + li + '</ul></div>' +
+                '<span class="product-price">' + Number(p.price).toLocaleString('vi-VN') + 'đ</span>' +
+                '<button class="buy-button" onclick="addToCart(this)">🛒 Thêm vào giỏ hàng</button>';
+
+            grid.appendChild(card);
+        });
+    }
+
+    renderAdminProducts();
 
 
     function updateBadge() {
@@ -71,29 +104,99 @@ document.addEventListener('DOMContentLoaded', function () {
         updateBadge();
         showToast(name);
     };
-    var themeToggleBtn = document.getElementById('theme-toggle');
+    var themeCheckbox = document.getElementById('checkbox-theme');
     var currentTheme = localStorage.getItem('theme');
-    var themeIcon = document.getElementById('themeImg');
     if (currentTheme === 'light') {
         document.body.classList.add('light-theme');
-        if (themeToggleBtn) themeImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3hJ7MXd2HfwcZjO_dJ4On7fjHdV7X-iLC91uX66evaw&s';
+        if (themeCheckbox) {
+            themeCheckbox.checked = true; 
+        }
     } else {
         document.body.classList.remove('light-theme');
-        if (themeToggleBtn) themeImg.src = 'https://img.pikbest.com/element_our/20230503/bg/ad46e5739aa71.png!w700wp'; 
+        if (themeCheckbox) {
+            themeCheckbox.checked = false; 
+        }
     }
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', function () {
-            document.body.classList.toggle('light-theme');
-
-            if (document.body.classList.contains('light-theme')) {
+    if (themeCheckbox) {
+        themeCheckbox.addEventListener('change', function (e) {
+            if (e.target.checked) {
+                document.body.classList.add('light-theme');
                 localStorage.setItem('theme', 'light');
-                themeImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3hJ7MXd2HfwcZjO_dJ4On7fjHdV7X-iLC91uX66evaw&s';
             } else {
+                document.body.classList.remove('light-theme');
                 localStorage.setItem('theme', 'dark');
-                tthemeImg.src = 'https://img.pikbest.com/element_our/20230503/bg/ad46e5739aa71.png!w700wp';
             }
         });
     }
+
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+    const productCards = document.querySelectorAll(".product-card");
+    const noProductsMessage = document.getElementById("noProductsMessage");
+
+    function filterProducts() {
+        const keyword = searchInput.value.toLowerCase().trim();
+        let hasMatches = false;
+
+        productCards.forEach(card => {
+            const productName = card.getAttribute("data-name").toLowerCase();
+            const productSpecs = card.getAttribute("data-specs").toLowerCase();
+
+            if (productName.includes(keyword) || productSpecs.includes(keyword)) {
+                card.style.display = ""; 
+                hasMatches = true;
+            } else {
+                card.style.display = "none"; 
+            }
+        });
+
+        if (hasMatches) {
+            noProductsMessage.style.display = "none";
+        } else {
+            noProductsMessage.style.display = "block";
+        }
+    }
+    searchInput.addEventListener("input", filterProducts);
+    if (searchBtn) {
+        searchBtn.closest("form").addEventListener("submit", (e) => {
+            e.preventDefault(); 
+            filterProducts();
+        });
+    }
+    const guestLinks = document.querySelectorAll(".guest-link");
+    const userProfile = document.getElementById("user-profile");
+    const userNameDisplay = document.getElementById("userNameDisplay");
+    const logoutBtn = document.getElementById("logout");
+
+    function checkLoginStatus() {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const userName = currentUser && (currentUser.name || currentUser.fullname);
+        const adminLink = document.getElementById("admin-link");
+
+        if (userName) {
+            guestLinks.forEach(link => link.style.display = "none"); 
+            userProfile.style.display = "block"; 
+            userNameDisplay.textContent = `Xin chào, ${userName}`; 
+        } else {
+            guestLinks.forEach(link => link.style.display = "block");
+            userProfile.style.display = "none";
+        }
+
+        if (adminLink) {
+            adminLink.style.display = (currentUser && currentUser.isAdmin) ? "block" : "none";
+        }
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+            const confirmLogout = confirm("Bạn có chắc chắn muốn đăng xuất tài khoản không?");
+            if (confirmLogout) {
+                localStorage.removeItem("currentUser");
+                window.location.reload();
+            }
+        });
+    }
+
+    checkLoginStatus();
     updateBadge();
 });

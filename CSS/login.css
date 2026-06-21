@@ -3,16 +3,43 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+    --bg-body: #0a0e27;
+    --text-main: #ffffff;
+    --text-muted: #a0aec0;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.1);
+    --social-bg: rgba(255, 255, 255, 0.03);
+    --social-border: rgba(255, 255, 255, 0.1);
+}
+body.light-theme {
+    --bg-body: #f4f6f9;
+    --text-main: #1a202c;
+    --text-muted: #4a5568;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --input-bg: #f8fafc;
+    --input-border: #cbd5e0;
+    --social-bg: #f8fafc;
+    --social-border: #e2e8f0;
+}
 body {
     font-family: 'Exo 2', sans-serif;
-    background: #0a0e27;
-    color: #ffffff;
+    background: var(--bg-body);
+    color: var(--text-main);
     width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 80px 16px 32px; 
+    transition: background 0.3s ease, color 0.3s ease;
+}
+#eyeIcon{
+    width: 18px; 
+    height: 18px;
 }
 .login-container {
     position: relative;
@@ -20,9 +47,9 @@ body {
     width: 100%;
     max-width: 660px;
     padding: 48px 40px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--card-bg);
     border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--card-border);
 }
 .logo-section {
     text-align: center;
@@ -58,7 +85,7 @@ body {
     background-clip: text;
 }
 .login-header p {
-    color: #a0aec0;
+    color: var(--text-muted);
     font-size: 14px;
 }
 .form-group {
@@ -67,7 +94,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #ffffff;
+    color: var(--text-main);
     font-weight: 600;
     font-size: 14px;
 }
@@ -77,10 +104,10 @@ body {
 .form-input {
     width: 100%;
     padding: 14px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 12px;
-    color: #ffffff;
+    color: var(--text-main);
     font-size: 15px;
     font-family: 'Exo 2', sans-serif;
     outline: none;
@@ -90,7 +117,7 @@ body {
     border-color: #4facfe;
 }
 .form-input::placeholder {
-    color: #a0aec0;
+    color: var(--text-muted);
 }
 .has-toggle .form-input {
     padding-right: 48px;
@@ -102,7 +129,7 @@ body {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #a0aec0;
+    color: var(--text-muted);
     cursor: pointer;
     font-size: 16px;
     outline: none;
@@ -121,7 +148,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #a0aec0;
+    color: var(--text-muted);
 }
 .checkbox-row input[type="checkbox"] {
     width: 16px;
@@ -160,7 +187,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: 24px 0;
-    color: #a0aec0;
+    color: var(--text-muted);
     font-size: 14px;
 }
 /* Social */
@@ -172,10 +199,10 @@ body {
 }
 .social-button {
     padding: 13px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--social-bg);
+    border: 1px solid var(--social-border);
     border-radius: 10px;
-    color: #ffffff;
+    color: var(--text-main);
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -198,7 +225,7 @@ body {
 /* Signup link */
 .signup-link {
     text-align: center;
-    color: #a0aec0;
+    color: var(--text-muted);
     font-size: 14px;
     display: flex;
     justify-content: center;
@@ -223,13 +250,13 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    color: #a0aec0;
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 14px;
     transition: color 0.2s;
 }
 .back-home a:hover {
-    color: #ffffff;
+    color: var(--text-main);
 }
 @media (max-width: 480px) {
     .login-container { padding: 32px 24px; }

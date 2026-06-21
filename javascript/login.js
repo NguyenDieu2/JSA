@@ -1,6 +1,16 @@
-if (localStorage.getItem("currentUser")) {
-  location.href = "main.html"; 
-}
+(function () {
+  const existing = JSON.parse(localStorage.getItem("currentUser") || "null");
+  if (existing) {
+    location.href = existing.isAdmin ? "admin.html" : "index.html";
+  }
+})();
+
+// Tài khoản admin cố định — đăng nhập bằng email/mật khẩu này để vào trang quản trị
+const ADMIN_ACCOUNT = {
+  email: "admin@dieutech.com",
+  password: "admin123",
+  fullname: "Quản trị viên"
+};
 
 let form = document.querySelector("form");
 
@@ -8,24 +18,43 @@ if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let emailVal = email.value.trim();
+    let passwordVal = password.value.trim();
+
+    // Kiểm tra tài khoản admin trước
+    if (emailVal === ADMIN_ACCOUNT.email && passwordVal === ADMIN_ACCOUNT.password) {
+      const adminSession = {
+        email: ADMIN_ACCOUNT.email,
+        name: ADMIN_ACCOUNT.fullname,
+        isAdmin: true
+      };
+      localStorage.setItem("currentUser", JSON.stringify(adminSession));
+      alert("Đăng nhập quản trị thành công!");
+      location.href = "admin.html";
+      return;
+    }
+
     if (!localStorage.getItem("users")) {
       alert("Không tìm thấy người dùng nào!");
     } else {
       let users = JSON.parse(localStorage.getItem("users"));
 
-      let email = document.getElementById("email");
-      let password = document.getElementById("password");
-
       let existingUser = users.find(
         (user) =>
-          user.email === email.value.trim() &&
-          user.password === password.value.trim()
+          user.email === emailVal &&
+          user.password === passwordVal
       );
 
       if (existingUser) {
-        localStorage.setItem("currentUser", JSON.stringify(existingUser));
+        const loginSession = {
+          email: existingUser.email,
+          name: existingUser.fullname
+        };
+        localStorage.setItem("currentUser", JSON.stringify(loginSession));
         alert("Đăng nhập thành công!");
-        location.href = "main.html"; 
+        location.href = "index.html"; 
       } else {
         alert("Email hoặc mật khẩu không chính xác");
       }
@@ -35,14 +64,15 @@ if (form) {
 let showPasswordBtn = document.getElementById('showPassword');
 if (showPasswordBtn) {
   showPasswordBtn.addEventListener('click', function(e) {
-      e.preventDefault(); 
+      e.preventDefault();
       const pw = document.getElementById('password');
+      const icon = this.querySelector('img');
       if (pw.type === 'password') {
           pw.type = 'text';
-          this.textContent = '🙈';
+          if (icon) icon.src = './img/eye-show.png';
       } else {
           pw.type = 'password';
-          this.textContent = '👁';
+          if (icon) icon.src = './img/eye-hide.png';
       }
   });
 }

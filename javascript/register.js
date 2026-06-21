@@ -1,5 +1,5 @@
 if (localStorage.getItem("currentUser")) {
-  location.href = "main.html";
+  location.href = "index.html";
 }
 let form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
@@ -18,9 +18,9 @@ form.addEventListener("submit", (e) => {
   let numbers = /[0-9]/g;
 
   if (fullname.length < 6) {
-    alert("Username must be at least 6 characters");
+    alert("Tên tài khoản phải hơn 6 chữ cái");
   } else if (!email) {
-    alert("Vui long nhap email");
+    alert("Vui lòng nhập email");
   } else if (password.length < 8) {
     alert("Mật khẩu phải ít nhất 8 chữ số");
   } else if (!password.match(lowerCaseLetter)) {
@@ -43,30 +43,20 @@ form.addEventListener("submit", (e) => {
       });
 
     localStorage.setItem("users", JSON.stringify(existingUsers));
-    alert("User created successfully, please login");
-    location.href = "login.html";
+    localStorage.setItem("currentUser", JSON.stringify({ email, name: fullname }));
+    alert("Đăng ký thành công");
+    location.href = "index.html";
   }
 });
-let showPasswordBtn = document.getElementById('showPassword');
-if (showPasswordBtn) {
-  showPasswordBtn.addEventListener('click', function(e) {
-      e.preventDefault(); 
-      const pw = document.getElementById('password');
-      if (pw.type === 'password') {
-          pw.type = 'text';
-          this.textContent = '🙈';
-      } else {
-          pw.type = 'password';
-          this.textContent = '👁';
-      }
-  });
-}
 document.querySelectorAll('.toggle-password').forEach(btn => {
       btn.addEventListener('click', () => {
           const targetId = btn.getAttribute('data-target');
           const input = document.getElementById(targetId);
+          const icon = btn.querySelector('img');
           input.type = input.type === 'password' ? 'text' : 'password';
-          btn.textContent = input.type === 'password' ? '👁' : '🙈';
+           if (icon) {
+          icon.src = input.type === 'password' ? './img/eye-hide.png' : './img/eye-show.png';
+          }
       });
   });
   const pwdInput = document.getElementById('password');
@@ -82,4 +72,4 @@ document.querySelectorAll('.toggle-password').forEach(btn => {
       const widths = ['0%', '25%', '50%', '75%', '100%'];
       strengthBar.style.width = widths[strength];
       strengthBar.style.background = colors[strength];
-  });
+});

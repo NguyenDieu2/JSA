@@ -6,6 +6,7 @@
     <title>Đăng Ký</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/signup.css">
+    <script src="./javascript/theme.js"></script>
 </head>
 <body>
     <div class="back-home">
@@ -31,8 +32,7 @@
             <div class="form-group">
                 <label for="fullname">Họ và tên</label>
                 <div class="input-group">
-                    <span class="input-group-text">👤</span>
-                    <input type="text" class="form-input" placeholder="Nguyễn Văn A" required id="fullname" name="fullname">
+                    <input type="text" class="form-input" placeholder="Họ và tên" required id="fullname" name="fullname">
                 </div>
             </div>
 
@@ -46,7 +46,9 @@
                 <label for="password">Mật khẩu</label>
                 <div class="input-wrapper has-toggle">
                     <input type="password" id="password" name="password" class="form-input" placeholder="Mật khẩu (tối thiểu 8 ký tự)" required>
-                    <button type="button" class="toggle-password" data-target="password" aria-label="Hiện mật khẩu">👁</button>
+                    <button type="button" class="toggle-password" data-target="password" aria-label="Hiện mật khẩu">
+                        <img src="./img/eye-hide.png" class="eyeIcon">
+                    </button>
                 </div>
                 <div class="password-strength">
                     <div class="password-strength-bar" id="strengthBar"></div>
@@ -56,7 +58,9 @@
                 <label for="confirmPassword">Xác nhận mật khẩu</label>
                 <div class="input-wrapper has-toggle">
                     <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Nhập lại mật khẩu" required>
-                    <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Hiện mật khẩu">👁</button>
+                    <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Hiện mật khẩu">
+                        <img src="./img/eye-hide.png" class="eyeIcon">
+                    </button>
                 </div>
             </div>
             <div class="terms-wrapper">

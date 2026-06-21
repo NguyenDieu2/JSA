@@ -6,6 +6,7 @@
     <title>Đăng Nhập</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/login.css">
+    <script src="./javascript/theme.js"></script>
 </head>
 <body>
     <div class="back-home">
@@ -28,7 +29,6 @@
 
         <form class="login-form" action="#" method="POST">
             <div class="form-group">
-                <!-- FIX: dùng <label for="email"> thay vì <p> -->
                 <label for="email">Email</label>
                 <div class="input-wrapper">
                     <input type="email" id="email" name="email" class="form-input" placeholder="...@gmail.com" required>
@@ -37,10 +37,11 @@
 
             <div class="form-group">
                 <label for="password">Mật khẩu</label>
-                <!-- FIX: thêm class has-toggle để padding-right cho input -->
                 <div class="input-wrapper has-toggle">
                     <input type="password" id="password" name="password" class="form-input" placeholder="Nhập mật khẩu của bạn" required>
-                    <button type="button" id="showPassword" aria-label="Hiện mật khẩu">👁</button>
+                    <button type="button" id="showPassword" aria-label="Hiện mật khẩu">
+                        <img src="./img/eye-hide.png" id="eyeIcon">
+                    </button>
                 </div>
             </div>
 
@@ -75,7 +76,6 @@
             <a href="signup.html">Đăng ký ngay</a>
         </div>
     </div>
-
     <script src="./javascript/login.js"> </script>
 </body>
 </html>
