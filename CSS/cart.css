@@ -857,8 +857,8 @@ footer {
     align-items: center;
     justify-content: center;
     z-index: 1;
-    width: 14px;
-    height: 14px;
+    width: 32px;
+    height: 32px;
     transition: opacity 0.3s ease;
 }
 .slider-toggle .icon-dark img,

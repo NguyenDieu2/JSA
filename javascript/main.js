@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem(CART_KEY, JSON.stringify(cart));
     }
 
-    // Render các sản phẩm do admin thêm (lưu trong localStorage) thành
-    // .product-card giống hệt cấu trúc sản phẩm có sẵn, chèn vào cuối lưới.
     function renderAdminProducts() {
         var grid = document.querySelector('.product-grid');
         if (!grid) return;

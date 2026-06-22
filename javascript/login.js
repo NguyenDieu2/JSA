@@ -5,9 +5,8 @@
   }
 })();
 
-// Tài khoản admin cố định — đăng nhập bằng email/mật khẩu này để vào trang quản trị
 const ADMIN_ACCOUNT = {
-  email: "admin@dieutech.com",
+  email: "admin@gmail.com",
   password: "admin123",
   fullname: "Quản trị viên"
 };
@@ -23,7 +22,6 @@ if (form) {
     let emailVal = email.value.trim();
     let passwordVal = password.value.trim();
 
-    // Kiểm tra tài khoản admin trước
     if (emailVal === ADMIN_ACCOUNT.email && passwordVal === ADMIN_ACCOUNT.password) {
       const adminSession = {
         email: ADMIN_ACCOUNT.email,
