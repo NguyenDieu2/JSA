@@ -134,7 +134,7 @@
     transition: opacity 0.2s, transform 0.15s;
 }
 .admin-submit:hover { opacity: 0.9; transform: translateY(-1px); }
-/* Danh sách sản phẩm admin đã thêm */
+
 .admin-list { display: flex; flex-direction: column; gap: 12px; }
 .admin-product-row {
     display: flex;
