@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ cá nhân - DIEU TECH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/main.css">
+    <link rel="stylesheet" href="./CSS/profile.css">
+    <link rel="stylesheet" href="./CSS/icons.css">
+    <link rel="stylesheet" href="./CSS/font.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html"><img src="./img/logo.png" alt="DIEU TECH" class="logo"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html#products">Sản phẩm</a></li>
+                <li><a href="orders.html">Đơn hàng</a></li>
+                <li class="guest-link"><a href="login.html">Đăng nhập</a></li>
+                <li class="guest-link"><a href="signup.html">Đăng ký</a></li>
+                <li id="admin-link" style="display:none;"><a href="admin.html"><img class="ico" src="./img/icons/settings.png" alt=""> Quản trị</a></li>
+                <li id="user-profile" style="display: none;">
+                    <div class="user-menu-wrapper">
+                        <a href="profile.html" class="user-link" title="Hồ sơ cá nhân"><span id="userNameDisplay">Xin chào, Thành viên</span></a>
+                        <button id="logout" title="Đăng xuất">
+                            <img src="./img/logout.png" id="logoutImg" alt="Đăng xuất">
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <a href="cart.html" class="cart-wrap">
+                        <img class="cart" src="./img/icons/cart.png" alt="Giỏ hàng">
+                        <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox-theme">
+                            <input type="checkbox" id="checkbox-theme" />
+                            <div class="slider-toggle">
+                                <span class="icon-dark"><img src="./img/theme-dark.png" alt="Tối"></span>
+                                <span class="icon-light"><img src="./img/theme-light.png" alt="Sáng"></span>
+                            </div>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="profile-page">
+        <h1 class="section-title">Hồ Sơ Cá Nhân</h1>
+
+        <!-- Chưa đăng nhập -->
+        <div id="guestNotice" class="pf-state" style="display:none;">
+            <div class="pf-state-icon"><img class="ico" src="./img/icons/lock.png" alt=""></div>
+            <p>Bạn cần đăng nhập để xem hồ sơ cá nhân.</p>
+            <a href="login.html" class="button">Đăng nhập</a>
+        </div>
+
+        <div id="profileContent" style="display:none;">
+            <div class="pf-grid">
+                <!-- Thông tin tài khoản -->
+                <section class="pf-card">
+                    <h2>Thông tin tài khoản</h2>
+                    <div class="pf-avatar-box">
+                        <div class="pf-avatar" id="pfAvatar" title="Bấm để đổi ảnh đại diện">?</div>
+                        <div class="pf-avatar-actions">
+                            <button type="button" class="pf-btn-ghost" id="avatarPick">Đổi ảnh</button>
+                            <button type="button" class="pf-btn-ghost danger" id="avatarRemove" style="display:none;">Xóa ảnh</button>
+                        </div>
+                        <input type="file" id="avatarFile" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+                        <p class="pf-msg" id="avatarMsg"></p>
+                    </div>
+                    <form id="infoForm" novalidate>
+                        <div class="pf-field">
+                            <label for="pfEmail">Email</label>
+                            <input type="email" id="pfEmail" disabled>
+                        </div>
+                        <div class="pf-field">
+                            <label for="pfName">Tên hiển thị</label>
+                            <input type="text" id="pfName" maxlength="50" autocomplete="name" required>
+                        </div>
+                        <p class="pf-msg" id="infoMsg"></p>
+                        <button type="submit" class="pf-btn">Lưu thay đổi</button>
+                    </form>
+                </section>
+
+                <!-- Đổi mật khẩu -->
+                <section class="pf-card">
+                    <h2>Đổi mật khẩu</h2>
+                    <p class="pf-note" id="pwdNote" style="display:none;">
+                        Tài khoản của bạn đăng nhập bằng Google nên không có mật khẩu riêng để đổi.
+                    </p>
+                    <form id="pwdForm" novalidate>
+                        <div class="pf-field">
+                            <label for="pwdCurrent">Mật khẩu hiện tại</label>
+                            <input type="password" id="pwdCurrent" autocomplete="current-password">
+                        </div>
+                        <div class="pf-field">
+                            <label for="pwdNew">Mật khẩu mới</label>
+                            <input type="password" id="pwdNew" autocomplete="new-password" placeholder="Tối thiểu 8 ký tự, có chữ hoa, chữ thường và số">
+                        </div>
+                        <div class="pf-field">
+                            <label for="pwdConfirm">Nhập lại mật khẩu mới</label>
+                            <input type="password" id="pwdConfirm" autocomplete="new-password">
+                        </div>
+                        <p class="pf-msg" id="pwdMsg"></p>
+                        <button type="submit" class="pf-btn">Đổi mật khẩu</button>
+                    </form>
+                </section>
+            </div>
+
+            <!-- Lịch sử mua hàng -->
+            <section class="pf-card pf-history">
+                <div class="pf-history-head">
+                    <h2>Lịch sử mua hàng</h2>
+                    <a href="orders.html" class="pf-link">Xem chi tiết đơn hàng <img class="ico" src="./img/icons/arrow-right.png" alt=""></a>
+                </div>
+                <div class="pf-stats" id="pfStats"></div>
+                <div class="pf-orders" id="historyList"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Hỗ Trợ Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Bảo hành & sửa chữa</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Liên hệ</h4>
+                <ul>
+                    <li><a href="#">Hotline: 081224432</a></li>
+                    <li><a href="#">Email: contact@dieutech.com</a></li>
+                    <li><a href="#">Hỗ trợ: 8:00 - 17:00</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>DIEU TECHNOLOGY</p>
+        </div>
+    </footer>
+
+    <script src="./javascript/theme.js"></script>
+    <script type="module" src="./javascript/profile.js"></script>
+</body>
+</html>

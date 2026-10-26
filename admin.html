@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./CSS/main.css">
     <script src="./javascript/theme.js"></script>
     <link rel="stylesheet" href="./CSS/admin.css">
+    <link rel="stylesheet" href="./CSS/icons.css">
+    <link rel="stylesheet" href="./CSS/font.css">
 </head>
 <body>
     <header>
@@ -18,7 +20,7 @@
                 <li><a href="admin.html">Quản trị</a></li>
             </ul>
             <div id="adminTopBar" style="display:none; align-items:center; gap:14px;">
-                <span class="admin-badge">🛡 Admin</span>
+                <span class="admin-badge"><img class="ico" src="./img/icons/shield.png" alt=""> Admin</span>
                 <button id="adminLogout" style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--text-main);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;">Đăng xuất</button>
             </div>
         </nav>
@@ -26,9 +28,15 @@
 
     <div id="adminContent" class="admin-wrap" style="display:none;">
         <div class="admin-header">
-            <h1 class="admin-title">Quản lý <span>Sản phẩm</span></h1>
+            <h1 class="admin-title">Quản trị <span>Cửa hàng</span></h1>
         </div>
 
+        <div class="admin-tabs" id="adminTabs">
+            <button type="button" class="admin-tab active" data-tab="products">Sản phẩm</button>
+            <button type="button" class="admin-tab" data-tab="orders">Đơn hàng <span class="tab-badge" id="ordersBadge"></span></button>
+        </div>
+
+        <div id="tab-products">
         <div class="admin-grid">
             <div class="admin-card">
                 <h2>Thêm sản phẩm mới</h2>
@@ -36,6 +44,10 @@
                     <div class="admin-field">
                         <label>Tên sản phẩm</label>
                         <input type="text" id="p-name" placeholder="VD: iPad Pro M5" required>
+                    </div>
+                    <div class="admin-field">
+                        <label>Danh mục</label>
+                        <select id="p-category" required></select>
                     </div>
                     <div class="admin-field">
                         <label>Giá (VNĐ)</label>
@@ -47,11 +59,22 @@
                         <div class="img-preview" id="imgPreview"><span>Xem trước ảnh</span></div>
                     </div>
                     <div class="admin-field">
+                        <label>Ảnh phụ cho trang chi tiết (mỗi dòng 1 link, không bắt buộc)</label>
+                        <textarea id="p-gallery" placeholder="https://.../anh2.png&#10;https://.../anh3.png"></textarea>
+                        <small>Hiển thị thêm trong carousel sau ảnh chính; để trống nếu chỉ có 1 ảnh</small>
+                    </div>
+                    <div class="admin-field">
+                        <label>Biến thể: màu sắc / dung lượng (mỗi dòng 1 nhóm, không bắt buộc)</label>
+                        <textarea id="p-variants" placeholder="Màu sắc: Đen #1f1f1f, Bạc #d9d9db&#10;Dung lượng: 256GB, 512GB +3000000, 1TB +8000000"></textarea>
+                        <small>Cú pháp: Tên nhóm: tùy chọn, tùy chọn... Mỗi tùy chọn có thể thêm mã màu (#rrggbb) và/hoặc chênh lệch giá theo VNĐ (+3000000 hoặc -500000). Giá bán = giá gốc + chênh lệch. Tùy chọn đầu tiên là mặc định.</small>
+                    </div>
+                    <div class="admin-field">
                         <label>Mô tả / Thông số (mỗi dòng 1 đặc điểm)</label>
                         <textarea id="p-desc" placeholder="Chip Apple M5&#10;RAM 16GB&#10;Màn hình 13&quot; Liquid Retina" required></textarea>
                         <small>Mỗi dòng sẽ hiển thị như 1 gạch đầu dòng trên thẻ sản phẩm</small>
                     </div>
                     <button type="submit" class="admin-submit">Thêm vào danh sách sản phẩm</button>
+                    <button type="button" id="cancelEditBtn" class="admin-cancel" style="display:none;">Hủy sửa</button>
                 </form>
             </div>
             <div class="admin-card">
@@ -59,13 +82,25 @@
                 <div class="admin-list" id="adminList"></div>
             </div>
         </div>
+        </div>
+
+        <div id="tab-orders" style="display:none;">
+            <div class="orders-toolbar">
+                <input type="text" id="orderSearch" class="admin-search" placeholder="Tìm theo mã đơn, tên, số điện thoại, email...">
+                <button type="button" id="ordersRefresh" class="admin-cancel admin-inline">Làm mới</button>
+            </div>
+            <div class="chip-row" id="orderStatusChips"></div>
+            <div class="orders-notice" id="ordersNotice"></div>
+            <div class="orders-summary" id="ordersSummary"></div>
+            <div class="ao-list" id="adminOrders"></div>
+        </div>
     </div>
 
     <div id="accessDenied" class="admin-access-denied" style="display:none;">
-        <h2>🔒 Khu vực hạn chế</h2>
+        <h2><img class="ico" src="./img/icons/lock.png" alt=""> Khu vực hạn chế</h2>
         <p>Bạn cần đăng nhập bằng tài khoản quản trị để truy cập trang này.</p>
         <a href="login.html" class="button">Đăng nhập</a>
     </div>
-    <script src="./javascript/admin.js"></script>
+    <script type="module" src="./javascript/admin.js"></script>
 </body>
 </html>

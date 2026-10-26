@@ -1,0 +1,157 @@
+/* ===== Bố cục trang chi tiết (bổ sung, không ghi đè content.css) ===== */
+.product-name {
+    text-align: center;
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    margin: 0 0 28px;
+}
+.products .product-card { max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+/* ===== Phần bình luận ===== */
+.comments-section {
+    --c-text: #ffffff;
+    --c-muted: #a0aec0;
+    --c-card: rgba(255, 255, 255, 0.05);
+    --c-border: rgba(255, 255, 255, 0.12);
+    --c-input: rgba(255, 255, 255, 0.07);
+    --c-accent: #4facfe;
+    --c-accent-2: #00f2fe;
+    --c-btn-text: #0a0e27;
+    --c-star: #fbbf24;
+    --c-danger: #f87171;
+    max-width: 900px;
+    margin: 64px auto 0;
+    padding: 0 20px;
+    color: var(--c-text);
+}
+body.light-theme .comments-section {
+    --c-text: #1a202c;
+    --c-muted: #4a5568;
+    --c-card: #ffffff;
+    --c-border: #e2e8f0;
+    --c-input: #f7fafc;
+    --c-accent: #0076ff;
+    --c-accent-2: #0056b3;
+    --c-btn-text: #ffffff;
+}
+.comments-section .section-title { margin-bottom: 8px; text-align: center; }
+.cmt-summary { text-align: center; color: var(--c-muted); font-size: 15px; margin-bottom: 28px; min-height: 22px; }
+.cmt-summary .stars, .cmt-stars { color: var(--c-star); letter-spacing: 2px; }
+
+.cmt-form, .cmt-login, .cmt-item {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 20px;
+}
+.cmt-form { margin-bottom: 28px; }
+.cmt-form-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.cmt-as { font-size: 14px; color: var(--c-muted); }
+.cmt-as strong { color: var(--c-text); }
+
+.star-input { display: inline-flex; gap: 2px; }
+.star-input button {
+    background: none; border: none; cursor: pointer; padding: 2px;
+    font-size: 26px; line-height: 1; color: var(--c-border); transition: color 0.15s, transform 0.1s;
+}
+.star-input button.on { color: var(--c-star); }
+.star-input button:hover { transform: scale(1.15); }
+
+#cmtText {
+    width: 100%; min-height: 96px; resize: vertical;
+    background: var(--c-input); color: var(--c-text);
+    border: 1px solid var(--c-border); border-radius: 12px;
+    padding: 12px 14px; font: inherit; font-size: 15px; outline: none;
+    transition: border-color 0.2s;
+}
+#cmtText:focus { border-color: var(--c-accent); }
+.cmt-form-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+#cmtLen { font-size: 13px; color: var(--c-muted); }
+.cmt-submit {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: #0a0e27; border: none; border-radius: 50px;
+    padding: 10px 26px; font-weight: 700; font-size: 15px; cursor: pointer;
+    transition: transform 0.15s, opacity 0.2s;
+}
+.cmt-submit:hover { transform: translateY(-2px); }
+.cmt-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.cmt-login { text-align: center; margin-bottom: 28px; color: var(--c-muted); }
+.cmt-login a { color: var(--c-accent); font-weight: 700; text-decoration: none; }
+.cmt-login a:hover { text-decoration: underline; }
+
+.cmt-list { display: flex; flex-direction: column; gap: 14px; }
+.cmt-item { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: start; }
+.cmt-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe, #f093fb);
+    color: #fff; font-weight: 700; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+}
+.cmt-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.cmt-name { font-weight: 700; }
+.cmt-date { font-size: 12px; color: var(--c-muted); }
+.cmt-text { font-size: 15px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+.cmt-del {
+    background: none; border: 1px solid var(--c-border); color: var(--c-danger);
+    border-radius: 8px; padding: 4px 10px; font-size: 12px; cursor: pointer;
+}
+.cmt-del:hover { background: rgba(248, 113, 113, 0.12); border-color: var(--c-danger); }
+.cmt-empty { text-align: center; color: var(--c-muted); padding: 32px 0; }
+
+@media (max-width: 600px) {
+    .comments-section { margin-top: 44px; padding: 0 14px; }
+    .cmt-item { grid-template-columns: 38px 1fr; }
+    .cmt-avatar { width: 38px; height: 38px; font-size: 16px; }
+    .cmt-del { grid-column: 2; justify-self: start; }
+}
+
+/* ===== product.html: trạng thái không tìm thấy / đang tải ===== */
+.product-missing { text-align: center; padding: 64px 20px; }
+.product-missing h3 { margin-bottom: 8px; }
+.product-missing p { color: #a0aec0; margin-bottom: 20px; }
+
+/* ===== Chọn màu sắc / dung lượng (trang chi tiết) ===== */
+.variant-box {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 4px 24px 20px;
+    text-align: start;
+    font-size: 16px;
+    line-height: 1.4;
+}
+.variant-label { font-size: 14px; color: var(--text-muted, #a0aec0); margin-bottom: 8px; }
+.variant-label strong { margin-left: 4px; color: var(--text-main, #ffffff); font-weight: 700; }
+.variant-options { display: flex; flex-wrap: wrap; gap: 10px; }
+.opt { cursor: pointer; font-family: inherit; transition: border-color 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s; }
+
+.opt-color {
+    width: 36px; height: 36px;
+    padding: 3px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--card-border, rgba(255, 255, 255, 0.2));
+}
+.opt-color span {
+    display: block; width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--sw);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+.opt-color:hover { border-color: #4facfe; }
+.opt-color.active { border-color: #4facfe; box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.25); }
+
+.opt-text {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 8px 18px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid var(--card-border, rgba(255, 255, 255, 0.2));
+    color: var(--text-main, #ffffff);
+    font-size: 14px; font-weight: 700; line-height: 1.3;
+}
+.opt-text small { font-size: 11px; font-weight: 600; color: var(--text-muted, #a0aec0); }
+.opt-text:hover { border-color: #4facfe; }
+.opt-text.active { border-color: #4facfe; background: rgba(79, 172, 254, 0.12); color: #4facfe; }
+.opt-text.active small { color: #4facfe; }

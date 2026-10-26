@@ -1,0 +1,21 @@
+/* Font dùng chung cho toàn bộ website — đổi font tại đây là đổi cho mọi trang.
+   Nạp file này SAU các file CSS khác trong <head>. */
+:root {
+    --font-body: 'Exo 2', sans-serif;                      /* nội dung, nút, ô nhập liệu */
+    --font-display: 'Orbitron', 'Exo 2', sans-serif;       /* tiêu đề; ký tự Orbitron thiếu sẽ dùng Exo 2 */
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.btn,
+.dropdown-item {
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6,
+.section-title {
+    font-family: var(--font-display) !important;
+}

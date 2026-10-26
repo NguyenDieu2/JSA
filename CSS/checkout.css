@@ -11,8 +11,7 @@
     --muted:      #8896b3;
     --success:    #34c759;
     --error:      #ff453a;
-    --font-head:  'Orbitron', monospace;
-    --font-body:  'Exo 2', sans-serif;
+    --font-head:  var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     --radius:     12px;
     --radius-lg:  20px;
 }
@@ -31,7 +30,7 @@ body.light-theme {
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    font-family: var(--font-body);
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -127,7 +126,7 @@ select {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     color: var(--text);
-    font-family: var(--font-body);
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     font-size: 15px;
     padding: 13px 16px;
     width: 100%;
@@ -147,7 +146,7 @@ input::placeholder { color: var(--muted); opacity: .6; }
     border: 1px solid var(--border);
     border-radius: var(--radius);
     color: var(--text);
-    font-family: var(--font-body);
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     font-size: 14px;
     padding: 0 16px;
     white-space: nowrap;
@@ -162,7 +161,7 @@ input::placeholder { color: var(--muted); opacity: .6; }
     border: 1px solid var(--border) !important;
     border-radius: var(--radius) !important;
     color: var(--text) !important;
-    font-family: var(--font-body);
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     font-size: 15px;
     padding: 13px 16px;
     width: 100%;
@@ -185,7 +184,7 @@ input::placeholder { color: var(--muted); opacity: .6; }
 }
 .city-wrap .dropdown-item {
     color: var(--text);
-    font-family: var(--font-body);
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     font-size: 14px;
     border-radius: 8px;
     padding: 10px 14px;
@@ -417,7 +416,7 @@ input::placeholder { color: var(--muted); opacity: .6; }
     border: 1px solid var(--border);
     border-radius: var(--radius);
     color: var(--text);
-    font-family: var(--font-body);
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     font-size: 14px; font-weight: 600;
     cursor: pointer;
     transition: border-color .2s;

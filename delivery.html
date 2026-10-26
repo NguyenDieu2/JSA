@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./CSS/checkout.css">
     <script src="./javascript/theme.js"></script>
+    <link rel="stylesheet" href="./CSS/icons.css">
+    <link rel="stylesheet" href="./CSS/font.css">
 </head>
 <body>
     <nav>
@@ -43,7 +45,7 @@
                     <div class="field" id="f-phone">
                         <label>Số điện thoại</label>
                         <div class="phone-row">
-                            <div class="flag-btn">🇻🇳 +84</div>
+                            <div class="flag-btn"><img class="ico" src="./img/icons/flag-vn.png" alt=""> +84</div>
                             <input type="tel" id="inp-phone" placeholder="0123 456 789" style="flex:1">
                         </div>
                         <span class="err-msg">Số điện thoại không hợp lệ (9–11 số)</span>
@@ -99,13 +101,13 @@
                         <span class="pay-label">Apple Pay</span>
                     </button>
                     <button class="pay-btn" data-method="cod">
-                        <span style="font-size:22px">💵</span>
+                        <img class="ico" src="./img/icons/cash.png" alt="">
                         <span class="pay-label">COD</span>
                     </button>
                 </div>
             </div>
 
-            <button class="confirm-btn" id="confirmBtn">Xác nhận đặt hàng →</button>
+            <button class="confirm-btn" id="confirmBtn">Xác nhận đặt hàng <img class="ico" src="./img/icons/arrow-right.png" alt=""></button>
         </div>
 
         <div class="summary-panel">
@@ -149,6 +151,6 @@
         </div>
     </div>
 
-    <script src="./javascript/delivery.js"></script>
+    <script type="module" src="./javascript/delivery.js"></script>
 </body>
 </html>

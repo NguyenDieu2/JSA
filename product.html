@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - DIEU TECH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./CSS/content.css">
+    <link rel="stylesheet" href="./CSS/comments.css">
+    <link rel="stylesheet" href="./CSS/icons.css">
+    <link rel="stylesheet" href="./CSS/font.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html"><img src="./img/logo.png" alt="DIEU TECH" class="logo"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html#products">Sản phẩm</a></li>
+                <li><a href="orders.html">Đơn hàng</a></li>
+                <li class="guest-link"><a href="login.html">Đăng nhập</a></li>
+                <li class="guest-link"><a href="signup.html">Đăng ký</a></li>
+                <li id="admin-link" style="display:none;"><a href="admin.html"><img class="ico" src="./img/icons/settings.png" alt=""> Quản trị</a></li>
+                <li id="user-profile" style="display: none;">
+                    <div class="user-menu-wrapper">
+                        <a href="profile.html" class="user-link" title="Hồ sơ cá nhân"><span id="userNameDisplay">Xin chào, Thành viên</span></a>
+                        <button id="logout" title="Đăng xuất">
+                            <img src="./img/logout.png" id="logoutImg" alt="Đăng xuất">
+                        </button>
+                    </div>
+                </li>
+                <li><a href="cart.html">
+                    <img class="cart" src="./img/icons/cart.png" alt="Giỏ hàng">
+                    <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox-theme">
+                            <input type="checkbox" id="checkbox-theme" />
+                            <div class="slider-toggle">
+                                <span class="icon-dark"><img src="./img/theme-dark.png" alt="Tối"></span>
+                                <span class="icon-light"><img src="./img/theme-light.png" alt="Sáng"></span>
+                            </div>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="products" id="products">
+        <h2 class="section-title">Chi tiết</h2>
+        <!-- product.js render thẻ sản phẩm vào đây theo ?id=... -->
+        <div class="product" id="productRoot"></div>
+    </section>
+
+    <section class="comments-section" id="comments">
+        <h2 class="section-title">Đánh giá &amp; Bình luận <span id="cmtCount"></span></h2>
+        <div class="cmt-summary" id="cmtSummary"></div>
+
+        <div class="cmt-login" id="cmtLogin" style="display:none;">
+            Bạn cần <a href="login.html">đăng nhập</a> hoặc <a href="signup.html">đăng ký</a> để bình luận.
+        </div>
+
+        <form class="cmt-form" id="cmtForm" style="display:none;">
+            <div class="cmt-form-top">
+                <span class="cmt-as" id="cmtAs"></span>
+                <div class="star-input" id="starInput" title="Chấm sao (không bắt buộc)">
+                    <button type="button" data-v="1"><img class="ico" src="./img/icons/star-empty.png" alt="1 sao"></button>
+                    <button type="button" data-v="2"><img class="ico" src="./img/icons/star-empty.png" alt="2 sao"></button>
+                    <button type="button" data-v="3"><img class="ico" src="./img/icons/star-empty.png" alt="3 sao"></button>
+                    <button type="button" data-v="4"><img class="ico" src="./img/icons/star-empty.png" alt="4 sao"></button>
+                    <button type="button" data-v="5"><img class="ico" src="./img/icons/star-empty.png" alt="5 sao"></button>
+                </div>
+            </div>
+            <textarea id="cmtText" maxlength="500" placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."></textarea>
+            <div class="cmt-form-foot">
+                <span id="cmtLen">0/500</span>
+                <button type="submit" class="cmt-submit">Gửi bình luận</button>
+            </div>
+        </form>
+
+        <div class="cmt-list" id="cmtList"></div>
+    </section>
+
+    <div id="toast">
+        <span class="t-icon"><img class="ico" src="./img/icons/check.png" alt=""></span>
+        <div class="t-text">
+            <strong id="toastName"></strong>
+            <span>Đã thêm vào giỏ hàng</span>
+        </div>
+        <a href="cart.html" class="t-link">Xem giỏ <img class="ico" src="./img/icons/arrow-right.png" alt=""></a>
+    </div>
+    <div class="footer">
+        <p>DIEU TECHNOLOGY</p>
+    </div>
+    <script type="module" src="./javascript/main.js"></script>
+    <script type="module" src="./javascript/product.js"></script>
+    <script type="module" src="./javascript/comments.js"></script>
+</body>
+</html>

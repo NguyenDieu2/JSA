@@ -1,0 +1,56 @@
+/* Kích thước icon PNG (img/icons) theo từng vị trí sử dụng. Nạp sau CSS của trang, trước font.css. */
+.ico { display: inline-block; width: 1.15em; height: 1.15em; object-fit: contain; vertical-align: -0.22em; flex-shrink: 0; }
+
+/* nút mua hàng / nút chính / liên kết có mũi tên */
+.buy-button .ico { width: 20px; height: 20px; margin-right: 6px; vertical-align: -4px; }
+.confirm-btn .ico, .btn-arrow .ico, .btn-continue .ico, .pf-link .ico, .t-link .ico { width: 18px; height: 18px; vertical-align: -4px; }
+.btn-continue .ico { margin-right: 4px; }
+.confirm-btn .ico { margin-left: 4px; }
+.back-home .ico { width: 18px; height: 18px; vertical-align: middle; }
+.btn-arrow { display: inline-flex; align-items: center; }
+
+/* menu, huy hiệu admin, thông báo */
+.nav-links .ico { width: 18px; height: 18px; margin-right: 6px; vertical-align: -3px; }
+.admin-badge .ico { width: 16px; height: 16px; vertical-align: -3px; margin-right: 2px; }
+.t-icon .ico { width: 22px; height: 22px; vertical-align: middle; }
+.notify-head .ico { width: 20px; height: 20px; vertical-align: -4px; margin-right: 4px; }
+
+/* trạng thái rỗng / bị hạn chế */
+.state-icon .ico, .pf-state-icon .ico, .e-icon .ico, .eico .ico { width: 56px; height: 56px; vertical-align: middle; }
+.admin-access-denied h2 .ico { width: 28px; height: 28px; vertical-align: -6px; margin-right: 4px; }
+.oi-fallback .ico { width: 30px; height: 30px; }
+.thumb .ico { width: 30px; height: 30px; }
+
+/* thanh toán: ghi đè bộ lọc xám của .pay-btn img */
+.pay-btn img.ico { width: 28px; height: 28px; max-height: none; filter: none; }
+.flag-btn .ico { width: 24px; height: 24px; margin-right: 4px; vertical-align: -6px; }
+
+/* nút nhỏ: sửa / xóa (admin), xóa dòng giỏ hàng */
+.p-edit .ico, .p-delete .ico, .remove-btn .ico { width: 16px; height: 16px; vertical-align: 0; }
+.coupon-hint .ico { width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; }
+
+/* đánh giá sao */
+.stars .ico, .cmt-stars .ico { width: 16px; height: 16px; margin-right: 2px; vertical-align: -3px; }
+.star-input button .ico { width: 28px; height: 28px; vertical-align: top; }
+
+/* Thông báo nổi "đã thêm vào giỏ": HTML dùng class t-icon / t-text / t-link, còn CSS cũ chỉ viết cho toast-*, nên bổ sung ở đây */
+#toast { max-width: 380px; }
+#toast .t-icon { display: flex; flex-shrink: 0; }
+#toast .t-text strong { display: block; color: var(--toast-text-strong, #4facfe); margin-bottom: 2px; font-size: 13px; }
+#toast .t-text span { color: var(--text-muted, #a0aec0); font-size: 12px; }
+#toast .t-link { margin-left: auto; color: #00f2fe; text-decoration: none; font-size: 12px; font-weight: 700; white-space: nowrap; flex-shrink: 0; pointer-events: all; }
+#toast .t-link:hover { text-decoration: underline; }
+
+/* ===== Tinh chỉnh sau khi xem thử trên giao diện thật ===== */
+/* mũi tên trên nút nền gradient / nền xanh đậm: đổi màu cho nhìn rõ */
+.btn-checkout .ico { filter: brightness(0); }
+.confirm-btn .ico { filter: brightness(0) invert(1); }
+/* nút mua khi rê chuột (nền xanh): icon theo màu chữ của nút */
+.product-grid .buy-button:hover .ico { filter: brightness(0); }
+body.light-theme .product-grid .buy-button:hover .ico { filter: brightness(0) invert(1); }
+/* icon sửa / xóa trong dòng sản phẩm admin: bỏ lề và nền mà quy tắc ".admin-product-row img" áp cho ảnh sản phẩm */
+.admin-product-row .p-actions .ico { width: 18px; height: 18px; padding: 0; background: none; border-radius: 0; }
+/* icon có viền trắng trong khung 128px nên nhìn nhỏ hơn kích thước khai báo: tăng nhẹ ở vài chỗ */
+.nav-links .ico { width: 20px; height: 20px; }
+.admin-badge .ico { width: 18px; height: 18px; }
+.notify-head .ico { width: 22px; height: 22px; }

@@ -36,7 +36,7 @@ body.light-theme {
     --switch-track-border: rgba(0, 118, 255, 0.35);
 }
 body {
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     background: var(--bg-body);
     color: var(--text-main);
     overflow-x: hidden;
@@ -125,7 +125,7 @@ nav {
     color: #fff;
     font-size: 10px;
     font-weight: 700;
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     min-width: 18px;
     height: 18px;
     border-radius: 9px;
@@ -178,9 +178,54 @@ nav {
     background: #00f2fe;
     transform: scale(1.03);
 }
-#logoutImg{
-    width: 80px;
-    height: 80px;
+/* ===== Menu người dùng (tên + nút đăng xuất), đồng bộ với main.css ===== */
+.user-menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: var(--font-body, 'Exo 2', sans-serif);
+    transition: all 0.3s ease;
+}
+body.light-theme .user-menu-wrapper {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+.user-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+#userNameDisplay {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    white-space: nowrap;
+}
+body:not(.light-theme) #userNameDisplay { text-shadow: 0 0 5px rgba(0, 242, 254, 0.5); }
+.user-link:hover #userNameDisplay { color: #4facfe; }
+#logout {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+#logout:hover {
+    background: rgba(255, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+#logoutImg {
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.5));
 }
 .button {
     display: inline-block;
@@ -199,7 +244,7 @@ nav {
     margin: 0 auto;
 }
 .section-title {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 38px;
     text-align: center;
     margin-bottom: 48px;
@@ -222,7 +267,7 @@ nav {
 }
 .product-card h3 {
     width: 400px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 30px;
     text-align: center;
     color: var(--text-main);
@@ -254,7 +299,7 @@ nav {
     padding: 14px 20px;
     border-radius: 12px;
     font-size: 14px;
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     display: flex;
     align-items: center;
     gap: 12px;

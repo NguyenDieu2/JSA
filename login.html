@@ -7,11 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/login.css">
     <script src="./javascript/theme.js"></script>
+    <link rel="stylesheet" href="./CSS/icons.css">
+    <link rel="stylesheet" href="./CSS/font.css">
 </head>
 <body>
     <div class="back-home">
         <a href="index.html">
-            <span>←</span>
+            <span><img class="ico" src="./img/icons/arrow-left.png" alt=""></span>
             <span>Về trang chủ</span>
         </a>
     </div>
@@ -61,11 +63,11 @@
         </div>
 
         <div class="social-login">
-            <a href="#" class="social-button">
+            <a href="#" class="social-button" id="googleLogin">
                 <span class="social-icon"><img src="./img/gmailicon.png" alt="Google"></span>
                 <span>Google</span>
             </a>
-            <a href="#" class="social-button">
+            <a href="#" class="social-button" id="facebookLogin">
                 <span class="social-icon"><img src="./img/facebookicon.png" alt="Facebook"></span>
                 <span>Facebook</span>
             </a>
@@ -76,6 +78,6 @@
             <a href="signup.html">Đăng ký ngay</a>
         </div>
     </div>
-    <script src="./javascript/login.js"> </script>
+    <script type="module" src="./javascript/login.js"> </script>
 </body>
 </html>

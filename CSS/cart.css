@@ -51,7 +51,7 @@ body.light-theme {
 }
 
 body {
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     background: var(--bg-body);
     color: var(--text-main);
     overflow-x: hidden;
@@ -172,7 +172,7 @@ nav {
 }
 
 .page-title {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: clamp(32px, 5vw, 56px);
     font-weight: 900;
     color: var(--text-main);
@@ -235,7 +235,7 @@ nav {
     background: rgba(79, 172, 254, 0.07);
     border: 1px solid rgba(79, 172, 254, 0.2);
     border-radius: 14px 14px 0 0;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 12px;
     color: #4facfe;
     letter-spacing: 0.05em;
@@ -306,7 +306,7 @@ nav {
 .item-img-wrap img:hover { transform: scale(1.08); }
 
 .item-info h3 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 13px;
     color: var(--text-main);
     margin-bottom: 4px;
@@ -368,7 +368,7 @@ nav {
     color: var(--text-main);
     font-size: 14px;
     font-weight: 600;
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     outline: none;
 }
 
@@ -428,7 +428,7 @@ nav {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
@@ -455,7 +455,7 @@ nav {
 }
 
 .empty-cart h3 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 20px;
     color: var(--text-muted);
 }
@@ -497,7 +497,7 @@ nav {
 }
 
 .summary-title {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 18px;
     color: #f093fb;
     margin-bottom: 4px;
@@ -532,7 +532,7 @@ nav {
     border: 1px solid var(--input-border);
     border-radius: 10px;
     color: var(--text-main);
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     font-size: 13px;
     padding: 10px 14px;
     outline: none;
@@ -550,7 +550,7 @@ nav {
     color: #4facfe;
     font-size: 13px;
     font-weight: 700;
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
     white-space: nowrap;
@@ -584,7 +584,7 @@ nav {
 }
 
 .total-price {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 20px;
     color: #00f2fe;
 }
@@ -595,7 +595,7 @@ nav {
     border: none;
     border-radius: 12px;
     color: #0a0e27;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
@@ -647,7 +647,7 @@ nav {
 }
 
 .section-title {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: clamp(18px, 3vw, 30px);
     text-align: center;
     margin-bottom: 36px;
@@ -688,7 +688,7 @@ nav {
 .sug-card:hover img { transform: scale(1.08); }
 
 .sug-card h4 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     font-size: 13px;
     color: var(--text-main);
     line-height: 1.4;
@@ -709,7 +709,7 @@ nav {
     color: #4facfe;
     font-size: 13px;
     font-weight: 700;
-    font-family: 'Exo 2', sans-serif;
+    font-family: var(--font-body, 'Exo 2', sans-serif);
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
 }
@@ -736,7 +736,7 @@ footer {
 }
 
 .footer-section h4 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif);
     margin-bottom: 16px;
     font-size: 18px;
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);

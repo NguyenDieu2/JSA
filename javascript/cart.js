@@ -1,5 +1,11 @@
+import { checkSession } from './check_session.js';
+import { requireLogin, getCurrentUser } from './auth.js';
+import { refreshOrderBadge } from './order-notify.js';
+import { ico } from './icons.js';
+import { COUPONS } from './catalog.js';
+
 const CART_KEY   = 'dieutech_cart';
-const COUPONS    = { 'DIEU10': 10, 'TECH20': 20, 'SALE15': 15 };
+const COUPON_KEY = 'dieutech_coupon';   // delivery.js đọc khóa này để tính giảm giá vào đơn
 let appliedDiscount = 0;
 function getCart() {
     try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
@@ -9,6 +15,8 @@ function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
 function fmt(n) { return n.toLocaleString('vi-VN') + 'đ'; }
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 function renderCart() {
     const cart      = getCart();
     const container = document.getElementById('cartItems');
@@ -36,11 +44,12 @@ function renderCart() {
         div.innerHTML  = `
             <div class="item-product col-product">
                 <div class="item-img-wrap">
-                    <img src="${item.img}" alt="${item.name}">
+                    <img src="${esc(item.img)}" alt="${esc(item.name)}">
                 </div>
                 <div class="item-info">
-                    <h3>${item.name}</h3>
-                    <p>${item.specs || ''}</p>
+                    <h3>${esc(item.name)}</h3>
+                    ${item.variant ? `<p class="item-variant" style="color:#4facfe;font-weight:600">${esc(item.variant)}</p>` : ''}
+                    <p>${esc(item.specs)}</p>
                 </div>
             </div>
             <div class="item-price col-price" data-label="Đơn giá">${fmt(item.price)}</div>
@@ -55,7 +64,7 @@ function renderCart() {
             <div class="item-total col-total" data-label="Thành tiền">${fmt(item.price * item.qty)}</div>
             <div class="col-action">
                 <button class="remove-btn" onclick="removeItem('${item.id}')" title="Xóa sản phẩm">
-                    <span>✕</span>
+                    <span>${ico('close')}</span>
                 </button>
             </div>
         `;
@@ -125,6 +134,7 @@ function clearCart() {
     });
     setTimeout(() => {
         saveCart([]);
+        localStorage.removeItem(COUPON_KEY);
         renderCart();
     }, rows.length * 80 + 350);
 }
@@ -133,16 +143,47 @@ function applyCoupon() {
     const msg  = document.getElementById('couponMsg');
     if (COUPONS[code]) {
         appliedDiscount = COUPONS[code];
-        msg.textContent = `✓ Áp dụng thành công! Giảm ${appliedDiscount}%`;
+        localStorage.setItem(COUPON_KEY, JSON.stringify({ code }));
+        msg.innerHTML = `${ico('check')} Áp dụng thành công! Giảm ${appliedDiscount}%`;
         msg.className   = 'coupon-hint success';
     } else {
         appliedDiscount = 0;
-        msg.textContent = '✕ Mã giảm giá không hợp lệ';
+        localStorage.removeItem(COUPON_KEY);
+        msg.innerHTML = ico('close') + ' Mã giảm giá không hợp lệ';
         msg.className   = 'coupon-hint error';
     }
     recalcSummary();
 }
-function checkout() {
-   window.location.href = 'delivery.html';
+// Kiểm tra nhanh (localStorage) trước, rồi kiểm tra Firebase Auth thật
+// trước khi cho sang trang giao hàng — hai lớp bảo vệ bổ sung cho nhau.
+async function checkout() {
+    if (!requireLogin('Bạn cần đăng nhập hoặc đăng ký để thanh toán. Chuyển đến trang đăng nhập ngay bây giờ?')) return;
+    const user = await checkSession();
+    if (!user) return; // checkSession đã tự chuyển về login.html
+    window.location.href = 'delivery.html';
 }
-renderCart()
+
+// Các hàm được gọi qua onclick trong HTML cần gắn vào window vì file này
+// giờ là module (do có import checkSession)
+window.changeQty    = changeQty;
+window.setQty       = setQty;
+window.removeItem   = removeItem;
+window.clearCart    = clearCart;
+window.applyCoupon  = applyCoupon;
+window.checkout     = checkout;
+
+// Khôi phục mã giảm giá đã áp dụng (không bị mất khi tải lại trang)
+function restoreCoupon() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(COUPON_KEY)); } catch {}
+    if (!saved || !COUPONS[saved.code]) { localStorage.removeItem(COUPON_KEY); return; }
+    appliedDiscount = COUPONS[saved.code];
+    document.getElementById('couponInput').value = saved.code;
+    const msg = document.getElementById('couponMsg');
+    msg.innerHTML = `${ico('check')} Áp dụng thành công! Giảm ${appliedDiscount}%`;
+    msg.className   = 'coupon-hint success';
+}
+
+restoreCoupon();
+renderCart();
+refreshOrderBadge(getCurrentUser());

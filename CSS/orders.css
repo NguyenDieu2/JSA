@@ -1,0 +1,142 @@
+.orders-page { max-width: 960px; margin: 0 auto; padding: 64px 24px 0; min-height: 60vh; }
+.orders-title-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+.orders-title-row .section-title { margin-bottom: 0; }
+#ordersCount {
+    display: none; align-items: center; padding: 6px 14px; border-radius: 20px;
+    background: var(--buy-btn-bg); border: 1px solid var(--buy-btn-border);
+    color: var(--buy-btn-text); font-size: 13px; font-weight: 700;
+}
+
+#ordersList { display: none; flex-direction: column; gap: 28px; }
+
+.order-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 20px; padding: 28px;
+    transition: border-color 0.2s, transform 0.2s, background 0.3s;
+}
+.order-card:hover { border-color: var(--card-hover-border); transform: translateY(-3px); }
+
+.oc-head {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--card-border);
+}
+.oc-id { font-family: var(--font-display, 'Orbitron', 'Exo 2', sans-serif); font-size: 18px; color: var(--card-h3-color); margin-bottom: 4px; }
+.oc-date { font-size: 13px; color: var(--text-muted); }
+.oc-status {
+    padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700;
+    background: rgba(74, 222, 128, 0.15); border: 1px solid #4ade80; color: #4ade80;
+}
+
+.oc-items { display: flex; flex-direction: column; gap: 14px; }
+.oi-row { display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 16px; }
+.oi-thumb {
+    width: 64px; height: 64px; border-radius: 12px; overflow: hidden;
+    background: var(--bg-body); border: 1px solid var(--card-border);
+    display: flex; align-items: center; justify-content: center;
+}
+.oi-thumb img { width: 100%; height: 100%; object-fit: contain; }
+.oi-fallback { font-size: 26px; }
+.oi-name { font-weight: 600; color: var(--card-h3-color); margin-bottom: 4px; }
+.oi-meta { font-size: 13px; color: var(--text-muted); }
+.oi-sub { font-weight: 700; color: var(--product-price-color); white-space: nowrap; }
+.oc-empty { color: var(--text-muted); font-size: 14px; }
+
+.oc-delivery {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px;
+    margin-top: 22px; padding: 18px; border-radius: 14px;
+    background: var(--bg-body); border: 1px solid var(--card-border);
+    font-size: 14px; color: var(--text-main);
+}
+.oc-delivery span { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+
+.oc-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--card-border);
+    color: var(--text-muted);
+}
+.oc-foot strong { font-size: 22px; color: var(--product-price-color); }
+
+#ordersEmpty, #guestNotice {
+    display: none; flex-direction: column; align-items: center; text-align: center;
+    gap: 14px; padding: 56px 24px; border-radius: 20px;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+}
+.state-icon { font-size: 52px; }
+#ordersEmpty p, #guestNotice p { color: var(--text-muted); font-size: 16px; max-width: 420px; }
+.state-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+.button.ghost {
+    background: transparent; border: 2px solid var(--buy-btn-border);
+    color: var(--buy-btn-text); padding: 14px 32px;
+}
+.button.ghost:hover { background: var(--buy-btn-hover-bg); color: var(--buy-btn-hover-text); }
+
+@media (max-width: 600px) {
+    .orders-page { padding: 40px 16px 0; }
+    .order-card { padding: 20px; }
+    .oi-row { grid-template-columns: 56px 1fr; }
+    .oi-thumb { width: 56px; height: 56px; }
+    .oi-sub { grid-column: 2; }
+}
+/* ===== Màu theo trạng thái đơn ===== */
+.oc-status.st-pending   { background: rgba(251, 191, 36, 0.15);  border-color: #fbbf24; color: #fbbf24; }
+.oc-status.st-confirmed { background: rgba(79, 172, 254, 0.15);  border-color: #4facfe; color: #4facfe; }
+.oc-status.st-shipping  { background: rgba(167, 139, 250, 0.15); border-color: #a78bfa; color: #a78bfa; }
+.oc-status.st-delivered { background: rgba(74, 222, 128, 0.15);  border-color: #4ade80; color: #4ade80; }
+.oc-status.st-cancelled { background: rgba(248, 113, 113, 0.15); border-color: #f87171; color: #f87171; }
+.oc-status.st-unsynced { background: rgba(251, 146, 60, 0.15); border-color: #fb923c; color: #fb923c; }
+
+/* ===== Thông báo trạng thái đơn hàng ===== */
+.notify-box {
+    margin-bottom: 24px; padding: 18px 22px; border-radius: 16px;
+    background: rgba(79, 172, 254, 0.1); border: 1px solid var(--card-hover-border, rgba(79, 172, 254, 0.4));
+}
+.notify-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; color: var(--text-main); }
+.notify-btn {
+    padding: 6px 14px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 700;
+    background: transparent; border: 1px solid var(--buy-btn-border); color: var(--buy-btn-text);
+    transition: background 0.2s, color 0.2s;
+}
+.notify-btn:hover { background: var(--buy-btn-hover-bg); color: var(--buy-btn-hover-text); }
+.notify-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.notify-list li { font-size: 14px; color: var(--text-main); }
+.notify-list li span { display: block; color: var(--text-muted); font-size: 13px; margin-top: 2px; }
+.oc-new {
+    margin-left: 8px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;
+    background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff;
+}
+
+/* Dòng thời gian trạng thái */
+.oc-track { display: flex; gap: 8px; margin: 0 0 20px; }
+.oc-step { flex: 1; position: relative; text-align: center; padding-top: 22px; min-width: 0; }
+.oc-step::before { content: ""; position: absolute; top: 7px; left: -50%; width: 100%; height: 2px; background: var(--card-border); }
+.oc-step:first-child::before { display: none; }
+.oc-step .dot {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 16px; height: 16px; border-radius: 50%; background: var(--bg-body); border: 2px solid var(--card-border); z-index: 1;
+}
+.oc-step b { display: block; font-size: 12px; color: var(--text-muted); font-weight: 600; }
+.oc-step small { display: block; font-size: 11px; color: var(--text-muted); min-height: 14px; margin-top: 2px; }
+.oc-step.done::before, .oc-step.current::before { background: #4ade80; }
+.oc-step.done .dot { background: #4ade80; border-color: #4ade80; }
+.oc-step.done b { color: var(--text-main); }
+.oc-step.current .dot { background: #4facfe; border-color: #4facfe; box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.25); }
+.oc-step.current b { color: #4facfe; font-weight: 700; }
+.oc-step.cancel::before { background: #f87171; }
+.oc-step.cancel .dot { background: #f87171; border-color: #f87171; }
+.oc-step.cancel b { color: #f87171; font-weight: 700; }
+@media (max-width: 600px) { .oc-step b { font-size: 11px; } .oc-step small { display: none; } }
+
+/* Thông báo nổi khi admin vừa đổi trạng thái lúc khách đang mở trang */
+.order-toast {
+    position: fixed; right: 24px; bottom: 24px; z-index: 9999; max-width: 340px;
+    padding: 14px 18px; border-radius: 12px; background: var(--toast-bg, #0a0e27); color: var(--text-main);
+    border: 1px solid var(--toast-border, rgba(79, 172, 254, 0.4)); border-left: 3px solid #4facfe;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px); opacity: 0; transition: transform 0.35s, opacity 0.35s;
+}
+.order-toast.show { transform: translateY(0); opacity: 1; }
+.order-toast strong { display: block; font-size: 14px; margin-bottom: 2px; color: var(--toast-text-strong, #4facfe); }
+.order-toast span { font-size: 12px; color: var(--text-muted); }
+/* nhãn trạng thái và nhãn "Mới" đứng cạnh nhau */
+.oc-state { display: flex; align-items: center; gap: 8px; }
+.oc-state .oc-new { margin-left: 0; }

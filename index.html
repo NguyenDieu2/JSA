@@ -6,6 +6,8 @@
     <title>DIEU TECH</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/main.css">
+    <link rel="stylesheet" href="./CSS/icons.css">
+    <link rel="stylesheet" href="./CSS/font.css">
 </head>
 <body>
     <header>
@@ -14,19 +16,20 @@
             <ul class="nav-links">
                 <li><a href="index.html">Trang chủ</a></li>
                 <li><a href="#products">Sản phẩm</a></li>
+                <li><a href="orders.html">Đơn hàng</a></li>
                 <li class="guest-link"><a href="login.html">Đăng nhập</a></li>
                 <li class="guest-link"><a href="signup.html">Đăng ký</a></li>
-                <li id="admin-link" style="display:none;"><a href="admin.html">⚙️ Quản trị</a></li>
+                <li id="admin-link" style="display:none;"><a href="admin.html"><img class="ico" src="./img/icons/settings.png" alt=""> Quản trị</a></li>
                 <li id="user-profile" style="display: none;">
                     <div class="user-menu-wrapper">
-                        <span id="userNameDisplay">Xin chào, Thành viên</span>
+                        <a href="profile.html" class="user-link" title="Hồ sơ cá nhân"><span id="userNameDisplay">Xin chào, Thành viên</span></a>
                         <button id="logout" title="Đăng xuất">
                             <img src="./img/logout.png" id="logoutImg" alt="Đăng xuất">
                         </button>
                     </div>
                 </li>
                 <li><a href="cart.html">
-                    <img class="cart" src="./img/cart.png" alt="Giỏ hàng">
+                    <img class="cart" src="./img/icons/cart.png" alt="Giỏ hàng">
                     <span class="cart-badge" id="cartBadge" style="display:none">0</span>
                     </a>
                 </li>
@@ -57,14 +60,35 @@
 
     <section class="products" id="products">
         <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+        <div class="filter-bar" id="filterBar">
+            <div class="filter-group">
+                <span class="filter-label">Danh mục</span>
+                <div class="chip-row" id="categoryChips"></div>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">Khoảng giá (triệu đồng)</span>
+                <div class="price-row">
+                    <input type="number" id="priceMin" min="0" step="any" placeholder="Từ">
+                    <span>–</span>
+                    <input type="number" id="priceMax" min="0" step="any" placeholder="Đến">
+                </div>
+                <div class="chip-row" id="priceChips"></div>
+            </div>
+            <div class="filter-foot">
+                <span id="filterCount"></span>
+                <button type="button" class="chip" id="filterReset">Xóa bộ lọc</button>
+            </div>
+        </div>
+
         <div class="product-grid">
             <div class="product-card"
                  data-id="macbook-pro-m3"
+                 data-category="laptop"
                  data-name="MacBook Pro M3"
                  data-price="49990000"
                  data-img="./img/mac.png"
                  data-specs="Chip Apple M3 Max 14 nhân | RAM 36GB | 1TB | 14.2&quot; Liquid Retina XDR">
-                <span class="product-icon"><a href="maccon.html"><img src="./img/mac.png" alt="MacBook Pro M3"></a></span>
+                <span class="product-icon"><a href="product.html?id=macbook-pro-m3"><img src="./img/mac.png" alt="MacBook Pro M3"></a></span>
                 <h3>MacBook Pro M3</h3>
                 <div class="product-specs">
                     <ul>
@@ -75,16 +99,17 @@
                     </ul>
                 </div>
                 <span class="product-price">49.990.000đ</span>
-                <button class="buy-button" onclick="addToCart(this)">🛒 Thêm vào giỏ hàng</button>
+                <button class="buy-button" onclick="addToCart(this)"><img class="ico" src="./img/icons/cart-add.png" alt=""> Thêm vào giỏ hàng</button>
             </div> 
 
             <div class="product-card"
                  data-id="iphone-16-pro-max"
+                 data-category="phone"
                  data-name="iPhone 16 Pro Max"
                  data-price="26590000"
                  data-img="./img/iphone.png"
                  data-specs="Chip A18 Pro | Camera 48MP | Titan Grade 5 | 6.3&quot; Super Retina XDR OLED">
-                <span class="product-icon"><a href="iphonecon.html"><img src="./img/iphone.png" alt="iPhone 16 Pro Max"></a></span>
+                <span class="product-icon"><a href="product.html?id=iphone-16-pro-max"><img src="./img/iphone.png" alt="iPhone 16 Pro Max"></a></span>
                 <h3>iPhone 16 Pro Max</h3>
                 <div class="product-specs">
                     <ul>
@@ -95,16 +120,17 @@
                     </ul>
                 </div>
                 <span class="product-price">26.590.000đ</span>
-                <button class="buy-button" onclick="addToCart(this)">🛒 Thêm vào giỏ hàng</button>
+                <button class="buy-button" onclick="addToCart(this)"><img class="ico" src="./img/icons/cart-add.png" alt=""> Thêm vào giỏ hàng</button>
             </div>
 
             <div class="product-card"
                  data-id="airpods-max"
+                 data-category="audio"
                  data-name="AirPods Max"
                  data-price="13590000"
                  data-img="./img/airpod.png"
                  data-specs="Chip Apple H1 | Chống ồn chủ động | Pin 20 giờ | 386.2g">
-                <span class="product-icon"><a href="airmaxcon.html"><img src="./img/airpod.png" alt="AirPods Max"></a></span>
+                <span class="product-icon"><a href="product.html?id=airpods-max"><img src="./img/airpod.png" alt="AirPods Max"></a></span>
                 <h3>AirPods Max</h3>
                 <div class="product-specs">
                     <ul>
@@ -115,16 +141,17 @@
                     </ul>
                 </div>
                 <span class="product-price">13.590.000đ</span>
-                <button class="buy-button" onclick="addToCart(this)">🛒 Thêm vào giỏ hàng</button>
+                <button class="buy-button" onclick="addToCart(this)"><img class="ico" src="./img/icons/cart-add.png" alt=""> Thêm vào giỏ hàng</button>
             </div>
 
             <div class="product-card"
                  data-id="apple-watch-ultra-3"
+                 data-category="watch"
                  data-name="Apple Watch Ultra 3"
                  data-price="22990000"
                  data-img="./img/watch.png"
                  data-specs="Chip S10 | Retina luôn bật | Mặt 49mm | Thiết kế mặt vuông">
-                <span class="product-icon"><a href="watchcon.html"><img src="./img/watch.png" alt="Apple Watch Ultra 3"></a></span>
+                <span class="product-icon"><a href="product.html?id=apple-watch-ultra-3"><img src="./img/watch.png" alt="Apple Watch Ultra 3"></a></span>
                 <h3>Apple Watch Ultra 3</h3>
                 <div class="product-specs">
                     <ul>
@@ -135,16 +162,17 @@
                     </ul>
                 </div>
                 <span class="product-price">22.990.000đ</span>
-                <button class="buy-button" onclick="addToCart(this)">🛒 Thêm vào giỏ hàng</button>
+                <button class="buy-button" onclick="addToCart(this)"><img class="ico" src="./img/icons/cart-add.png" alt=""> Thêm vào giỏ hàng</button>
             </div>
 
              <div class="product-card"
                  data-id="imac-m4"
+                 data-category="desktop"
                  data-name="iMac M4"
                  data-price="48990000"
                  data-img="./img/imac.png"
                  data-specs="Chip Apple M4 10 lõi | Retina 4.5K | RAM 24GB | 512GB">
-                <span class="product-icon"><a href="imaccon.html"><img src="./img/imac.png" alt="iMac M4"></a></span>
+                <span class="product-icon"><a href="product.html?id=imac-m4"><img src="./img/imac.png" alt="iMac M4"></a></span>
                 <h3>iMac M4</h3>
                 <div class="product-specs">
                     <ul>
@@ -155,16 +183,17 @@
                     </ul>
                 </div>
                 <span class="product-price">48.990.000đ</span>
-                <button class="buy-button" onclick="addToCart(this)">🛒 Thêm vào giỏ hàng</button>
+                <button class="buy-button" onclick="addToCart(this)"><img class="ico" src="./img/icons/cart-add.png" alt=""> Thêm vào giỏ hàng</button>
             </div>
 
             <div class="product-card"
                  data-id="canon-eos-r50"
+                 data-category="camera"
                  data-name="Máy ảnh Canon EOS R50"
                  data-price="19490000"
                  data-img="./img/canon.png"
                  data-specs="APS-C CMOS | Video 4K 30fps | LCD 3.0&quot; | 24.2MP">
-                <span class="product-icon"><a href="canoncon.html"><img src="./img/canon.png" alt="Canon EOS R50"></a></span>
+                <span class="product-icon"><a href="product.html?id=canon-eos-r50"><img src="./img/canon.png" alt="Canon EOS R50"></a></span>
                 <h3>Máy ảnh Canon EOS R50</h3>
                 <div class="product-specs">
                     <ul>
@@ -175,12 +204,12 @@
                     </ul>
                 </div>
                 <span class="product-price">19.490.000đ</span>
-                <button class="buy-button" onclick="addToCart(this)">🛒 Thêm vào giỏ hàng</button>
+                <button class="buy-button" onclick="addToCart(this)"><img class="ico" src="./img/icons/cart-add.png" alt=""> Thêm vào giỏ hàng</button>
             </div>
         </div>
 
         <div id="noProductsMessage">
-            <p style="font-size: 1.2rem; color: #888;">Chưa tìm thấy sản phẩm phù hợp với từ khóa của bạn.</p>
+            <p style="font-size: 1.2rem; color: #888;">Chưa tìm thấy sản phẩm phù hợp với từ khóa hoặc bộ lọc của bạn.</p>
          </div>
     </section>
 
@@ -209,13 +238,13 @@
         </div>
     </footer>
     <div id="toast">
-        <span class="t-icon">✅</span>
+        <span class="t-icon"><img class="ico" src="./img/icons/check.png" alt=""></span>
         <div class="t-text">
             <strong id="toastName"></strong>
             <span>Đã thêm vào giỏ hàng</span>
         </div>
-        <a href="cart.html" class="t-link">Xem giỏ →</a>
+        <a href="cart.html" class="t-link">Xem giỏ <img class="ico" src="./img/icons/arrow-right.png" alt=""></a>
     </div>
-    <script src="./javascript/main.js"></script>
+    <script type="module" src="./javascript/main.js"></script>
 </body>
 </html>
